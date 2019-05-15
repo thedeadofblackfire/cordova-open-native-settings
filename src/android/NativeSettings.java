@@ -35,6 +35,7 @@ public class NativeSettings extends CordovaPlugin {
 
         //Information on settings can be found here:
         //http://developer.android.com/reference/android/provider/Settings.html
+		//https://stackoverflow.com/questions/31638986/protected-apps-setting-on-huawei-phones-and-how-to-handle-it
 		
 		String actionToOpen = args.getString(0);
 		Intent intent = null;
