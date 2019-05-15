@@ -38,7 +38,7 @@ public class NativeSettings extends CordovaPlugin {
 		String actionToOpen = args.getString(0);
 		Intent intent = null;
 		
-		if (action.equals('openCustom')) {
+		if (action.equals("openCustom")) {
 			intent = new Intent(actionToOpen);
 		} else {
 
