@@ -40,8 +40,17 @@ public class NativeSettings extends CordovaPlugin {
 		
 		if (action.equals("openCustom")) {
 			intent = new Intent(actionToOpen);
+		else if (action.equals("openCustomComponent")) {
+			String customPkg = actionToOpen;
+			String customCls = args.getString(1);
+		
+			intent = new Intent();
+			intent.setComponent(new ComponentName(customPkg, customCls));
+			
+			if (args.length() > 2 && args.getBoolean(2)) {
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			}                               
 		} else {
-
 			if (actionToOpen.equals("accessibility")) {
 				intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS);
 			} else if (actionToOpen.equals("account")) {
@@ -161,11 +170,12 @@ public class NativeSettings extends CordovaPlugin {
 				callbackContext.sendPluginResult(new PluginResult(status, result));
 				return false;
 			}
+			
+			if (args.length() > 1 && args.getBoolean(1)) {
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			}
 		}
-        
-        if(args.length() > 1 && args.getBoolean(1)) {
-        	intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        }
+               
         this.cordova.getActivity().startActivity(intent);
         
         callbackContext.sendPluginResult(new PluginResult(status, result));
