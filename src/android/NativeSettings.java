@@ -14,6 +14,7 @@ import org.json.JSONException;
 import android.content.Intent;
 import android.content.Context;
 import android.net.Uri;
+import android.content.ComponentName;
 
 import android.provider.Settings;
 
