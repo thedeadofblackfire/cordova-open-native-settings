@@ -80,6 +80,7 @@ Setting constant | Description
 "nfcsharing" | Show NFC Sharing settings
 "nfc_payment" | Show NFC Tap & Pay settings
 "nfc_settings" | Show NFC settings
+"notification_id" | Settings > Notifications
 "print" | Show the top level print settings
 "privacy" | Show settings to allow configuration of privacy options
 "quick_launch" | Show settings to allow configuration of quick launch shortcuts
