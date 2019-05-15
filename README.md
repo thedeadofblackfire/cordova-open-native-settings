@@ -160,6 +160,68 @@ Setting constant | Description
 * In iOS, this plugin generates a URL scheme for the *-Info.plist configurations file.
 * The plugin for Android is based on the forked repository and was refactored. The iOS part was built from skretch.
 
+## Other examples
+
+```js
+if (window.cordova && window.cordova.plugins.settings) {
+    console.log('openNativeSettingsTest is active');
+    window.cordova.plugins.settings.open("battery_optimization", function() {
+            console.log('opened settings');
+        },
+        function () {
+            console.log('failed to open settings');
+        }
+    );
+} else {
+    console.log('openNativeSettingsTest is not active!');
+}
+```
+
+```js
+if (window.cordova && window.cordova.plugins.settings) {
+    console.log('openNativeSettingsTest is active');
+    window.cordova.plugins.settings.open(["battery_optimization", true], function() {
+            console.log('opened settings');
+        },
+        function () {
+            console.log('failed to open settings');
+        }
+    );
+} else {
+    console.log('openNativeSettingsTest is not active!');
+}
+```
+
+```js
+if (window.cordova && window.cordova.plugins.settings) {
+    console.log('openNativeSettingsTest is active');
+    window.cordova.plugins.settings.openCustom("android.settings.LOCALE_SETTINGS", function() {
+            console.log('opened settings');
+        },
+        function () {
+            console.log('failed to open settings');
+        }
+    );
+} else {
+    console.log('openNativeSettingsTest is not active!');
+}
+```
+
+```js
+if (window.cordova && window.cordova.plugins.settings) {
+    console.log('openNativeSettingsTest is active');
+    window.cordova.plugins.settings.openCustomComponent(["com.huawei.systemmanager", "com.huawei.systemmanager.optimize.process.ProtectActivity"], function() {
+            console.log('opened settings');
+        },
+        function () {
+            console.log('failed to open settings');
+        }
+    );
+} else {
+    console.log('openNativeSettingsTest is not active!');
+}
+```
+
 ## License
 ```
 The MIT License

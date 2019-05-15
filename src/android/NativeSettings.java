@@ -40,7 +40,7 @@ public class NativeSettings extends CordovaPlugin {
 		
 		if (action.equals("openCustom")) {
 			intent = new Intent(actionToOpen);
-		else if (action.equals("openCustomComponent")) {
+		} else if (action.equals("openCustomComponent")) {
 			String customPkg = actionToOpen;
 			String customCls = args.getString(1);
 		
