@@ -16,4 +16,9 @@ NativeSettings.openCustomComponent = function(setting, onsucess, onfail) {
 	cordova.exec(onsucess, onfail, "NativeSettings", "openCustomComponent", settings);
 };
 
+NativeSettings.checkCustomComponent = function(setting, onsucess, onfail) {
+	var settings = (typeof setting === 'string' || setting instanceof String) ? [setting] : setting;
+	cordova.exec(onsucess, onfail, "NativeSettings", "checkCustomComponent", settings);
+};
+
 module.exports = NativeSettings;

@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.Context;
 import android.net.Uri;
 import android.content.ComponentName;
+import android.content.pm.PackageManager;
 
 import android.provider.Settings;
 
@@ -42,6 +43,22 @@ public class NativeSettings extends CordovaPlugin {
 		
 		if (action.equals("openCustom")) {
 			intent = new Intent(actionToOpen);
+			
+		} else if (action.equals("checkCustomComponent")) {
+			String customPkg = actionToOpen;
+			String customCls = args.getString(1);
+		    
+			intent = new Intent();
+			intent.setComponent(new ComponentName(customPkg, customCls));
+			
+			if (context.getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
+				callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, true));
+				return true;
+			} else {			
+				callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, false));
+				return false;
+			}
+			
 		} else if (action.equals("openCustomComponent")) {
 			String customPkg = actionToOpen;
 			String customCls = args.getString(1);
@@ -51,7 +68,8 @@ public class NativeSettings extends CordovaPlugin {
 			
 			if (args.length() > 2 && args.getBoolean(2)) {
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			}                               
+			}                               			
+				 
 		} else {
 			if (actionToOpen.equals("accessibility")) {
 				intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS);
@@ -179,10 +197,11 @@ public class NativeSettings extends CordovaPlugin {
 			if (args.length() > 1 && args.getBoolean(1)) {
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			}
+						
 		}
                
-        this.cordova.getActivity().startActivity(intent);
-        
+        this.cordova.getActivity().startActivity(intent);       
+		
         callbackContext.sendPluginResult(new PluginResult(status, result));
         return true;
     }
