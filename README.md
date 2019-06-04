@@ -222,6 +222,21 @@ if (window.cordova && window.cordova.plugins.settings) {
 }
 ```
 
+```js
+if (window.cordova && window.cordova.plugins.settings) {
+    console.log('checkNativeSettingsTest is active');
+    window.cordova.plugins.settings.checkCustomComponent(["com.huawei.systemmanager", "com.huawei.systemmanager.optimize.process.ProtectActivity"], function(available) {
+            console.log('package is present ?'+available);
+        },
+        function () {
+            console.log('failed to open settings');
+        }
+    );
+} else {
+    console.log('openNativeSettingsTest is not active!');
+}
+```
+
 ## License
 ```
 The MIT License
